@@ -7,6 +7,9 @@ export default {
         comfortaa: ["Comfortaa", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
       },
+      backgroundImage: {
+        banner: "url('./assets/images/heroSection.png')",
+      },
     },
   },
   plugins: [],

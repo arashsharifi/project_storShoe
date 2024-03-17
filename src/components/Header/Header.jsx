@@ -14,11 +14,16 @@ import { Gi3DMeeple } from "react-icons/gi";
 import Navlinks from "../Navlinks/Navlinks";
 
 import iconUser from "../../assets/images/user-icon.png";
+
+import { useSelector } from "react-redux";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+
   function toggleFunc() {
     setIsOpen(!isOpen);
   }
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  console.log(totalQuantity);
   return (
     <nav className="bg-white z-50 shadow-xl fixed left-0 right-0">
       <div className="flex my-8 items-center justify-between md:justify-around ">
@@ -40,7 +45,7 @@ export default function Header() {
             <div className=" relative  ">
               <GrBasket className="text-2xl text-gray-900  " />
               <span className="bg-gray-900 w-6 h-6 text-white absolute top-[-21px] right-[-10px] flex items-center justify-center rounded-full text-sm ">
-                0
+                {totalQuantity}
               </span>
             </div>
           </div>
@@ -60,7 +65,7 @@ export default function Header() {
         </div>
         {/* mobail responsive */}
         <ul
-          className={`md:hidden bg-white   flex flex-col gap-0 md:gap-12 absolute w-full h-full bottom-0 py-24 
+          className={`md:hidden bg-white   flex flex-col gap-0 md:gap-12 absolute w-full h-[100vh] top-0   py-24 
           duration-500 ${isOpen ? "left-0" : "left-[-100%]"} `}
         >
           <div className="flex flex-col gap-2">
