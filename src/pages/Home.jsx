@@ -127,11 +127,13 @@ export default function Home() {
                 className="flex flex-col items-center justify-center  p-3 bg-yellow-500 md:bg-transparent text-white md:text-black rounded-lg shadow-xl md:shadow-none    "
               >
                 <div className="w-[50%] mx-auto duration-300 hover:scale-110 ">
-                  <img
-                    className="w-full h-full"
-                    src={item.imageProduct}
-                    alt="nooot"
-                  />
+                  <Link className="w-full h-full" to={`/shop/${item.id}`}>
+                    <img
+                      className="w-full h-full"
+                      src={item.imageProduct}
+                      alt="nooot"
+                    />
+                  </Link>
                 </div>
                 <div className="flex p-3 ">
                   <p className="font-bold text-md">{item.productName}</p>
