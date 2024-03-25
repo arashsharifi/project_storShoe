@@ -19,7 +19,7 @@ import { toast } from "react-toastify";
 export default function ProductDetails() {
   const [productData, setProductData] = useState(null);
   const [sameCategory, setSameCategory] = useState(null);
-  const [Rating, setRating] = useState(0);
+  const [rating, setRating] = useState(0);
   const [tap, setTap] = useState("");
   const reviewUser = useRef("");
   const reviewMsg = useRef("");
@@ -47,6 +47,9 @@ export default function ProductDetails() {
         productName: obj.productName,
         price: obj.price,
         imageProduct: obj.imageProduct,
+        shortDesc: obj.shortDesc,
+        avgRating: obj.avgRating,
+        category: obj.category,
       })
     );
     toast.success(`add ${obj.productName} in basket `);
@@ -59,6 +62,21 @@ export default function ProductDetails() {
     e.preventDefault();
     const reviewUserName = reviewUser.current.value;
     const reviewMsgName = reviewMsg.current.value;
+
+    if (reviewUserName && reviewMsgName && rating !== 0) {
+      toast.success(`User review message submitted successfully`);
+
+      const reviewObj = {
+        username: reviewUserName,
+        rating,
+        msg: reviewMsgName,
+      };
+      console.log(reviewObj);
+      reviewUser.current.value = "";
+      reviewMsg.current.value = "";
+    } else {
+      toast.error(`Please fill all fields and provide a rating.`);
+    }
   };
   return (
     <Helment title="ProductDetails">
@@ -150,31 +168,44 @@ export default function ProductDetails() {
                       className="outline-0 p-1 text-sm w-full"
                       type="text"
                       placeholder="Enter Name.."
+                      ref={reviewUser}
                     />
                   </div>
                   <div className="flex gap-7 text-orange-600 w-[90%] mx-auto">
-                    <div className="flex gap-1 items-center">
+                    <div
+                      onClick={() => setRating(1)}
+                      className="flex gap-1 items-center duration-200 hover:scale-110 cursor-pointer"
+                    >
                       <span>1</span>
-                      <FaStar
-                        onClick={() => setRating(1)}
-                        className="cursor-pointer"
-                      />
+                      <FaStar className="cursor-pointer" />
                     </div>
-                    <div className="flex gap-1 items-center">
+                    <div
+                      onClick={() => setRating(2)}
+                      className="flex gap-1 items-center duration-200 hover:scale-110 cursor-pointer"
+                    >
                       <span>2</span>
-                      <FaStar onClick={() => setRating(2)} />
+                      <FaStar />
                     </div>
-                    <div className="flex gap-1 items-center">
+                    <div
+                      onClick={() => setRating(3)}
+                      className="flex gap-1 items-center duration-200 hover:scale-110 cursor-pointer"
+                    >
                       <span>3</span>
-                      <FaStar onClick={() => setRating(3)} />
+                      <FaStar />
                     </div>
-                    <div className="flex gap-1 items-center">
+                    <div
+                      onClick={() => setRating(4)}
+                      className="flex gap-1 items-center duration-200 hover:scale-110 cursor-pointer"
+                    >
                       <span>4</span>
-                      <FaStar onClick={() => setRating(4)} />
+                      <FaStar />
                     </div>
-                    <div className="flex gap-1 items-center">
+                    <div
+                      onClick={() => setRating(5)}
+                      className="flex gap-1 items-center duration-200 hover:scale-110 cursor-pointer"
+                    >
                       <span>5</span>
-                      <FaStar onClick={() => setRating(5)} />
+                      <FaStar />
                     </div>
                   </div>
 
@@ -185,8 +216,12 @@ export default function ProductDetails() {
                     cols="20"
                     rows="5"
                     placeholder="Review Message..."
+                    ref={reviewMsg}
                   ></textarea>
-                  <button className="bg-slate-900 px-2 py-2 rounded-md duration-200 hover:scale-110 text-white w-[40%] md:w-[20%] ">
+                  <button
+                    onClick={SubmitHandler}
+                    className="bg-slate-900 px-2 py-2 rounded-md duration-200 hover:scale-110 text-white w-[40%] md:w-[20%] "
+                  >
                     submit
                   </button>
                 </div>

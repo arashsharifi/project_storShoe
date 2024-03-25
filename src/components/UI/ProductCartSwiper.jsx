@@ -38,6 +38,9 @@ export default function ProductCartSwiper({ dataSwiper }) {
         productName: obj.productName,
         price: obj.price,
         imageProduct: obj.imageProduct,
+        shortDesc: obj.shortDesc,
+        avgRating: obj.avgRating,
+        category: obj.category,
       })
     );
     toast.success(`add ${obj.productName} in basket `);

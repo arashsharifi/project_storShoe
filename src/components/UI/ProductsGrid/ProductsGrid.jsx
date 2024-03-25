@@ -31,6 +31,9 @@ export default function ProductsGrid({ dataSwiper }) {
         productName: obj.productName,
         price: obj.price,
         imageProduct: obj.imageProduct,
+        shortDesc: obj.shortDesc,
+        avgRating: obj.avgRating,
+        category: obj.category,
       })
     );
     toast.success(`add ${obj.productName} in basket `);

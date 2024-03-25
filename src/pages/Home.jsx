@@ -62,11 +62,14 @@ export default function Home() {
         productName: obj.productName,
         price: obj.price,
         imageProduct: obj.imageProduct,
+        shortDesc: obj.shortDesc,
+        avgRating: obj.avgRating,
+        category: obj.category,
       })
     );
     toast.success(`add ${obj.productName} in basket `);
   };
-  console.log(store);
+
   return (
     <Helment title={"home"}>
       <div className="w-full flex flex-col">
